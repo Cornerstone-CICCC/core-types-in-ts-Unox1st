@@ -1,7 +1,10 @@
 function printDirection(direction: "left" | "right"): void {
   if (direction === "left") {
-    console.log("Going left");
+    console.log("Going left!");
   } else {
-    console.log("Going right");
+    console.log("Going right!");
   }
 }
+
+printDirection("left");
+printDirection("right");

@@ -1,5 +1,5 @@
-let fruits: string[] = ["apple", "banana", "orange"];
+const fruits: string[] = ["apple", "banana", "orange"];
 
-fruits.push("mango");
+fruits.push("grape");
 
 console.log(fruits);

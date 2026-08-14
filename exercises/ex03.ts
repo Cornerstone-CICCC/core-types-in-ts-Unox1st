@@ -4,56 +4,54 @@ interface PaymentInformation {
 }
 
 interface Reservation {
-  customerName: string;
+  customerInformation: string;
+  paymentInformation: PaymentInformation;
   checkIn: Date;
   checkOut: Date;
   pricePerDay: number;
-  paymentInformation: PaymentInformation;
 }
 
-// helper function to calculate days
-function calculateDays(checkIn: Date, checkOut: Date): number {
+function getDays(checkIn: Date, checkOut: Date): number {
+  const oneDay = 1000 * 60 * 60 * 24;
   const diff = checkOut.getTime() - checkIn.getTime();
-  return diff / (1000 * 60 * 60 * 24);
+  return diff / oneDay;
 }
 
-// create reservation
+const checkIn1 = new Date("2025-01-10");
+const checkOut1 = new Date("2025-01-12");
+const pricePerDay1 = 100;
+
 const reservation1: Reservation = {
-  customerName: "Alice",
-  checkIn: new Date("2026-04-20"),
-  checkOut: new Date("2026-04-22"),
-  pricePerDay: 100,
+  customerInformation: "John Doe",
+  checkIn: checkIn1,
+  checkOut: checkOut1,
+  pricePerDay: pricePerDay1,
   paymentInformation: {
     isPayed: true,
-    totalPrice: 0,
+    totalPrice: getDays(checkIn1, checkOut1) * pricePerDay1,
   },
 };
 
-// calculate price
-const days = calculateDays(reservation1.checkIn, reservation1.checkOut);
-reservation1.paymentInformation.totalPrice = days * reservation1.pricePerDay;
+const reservations: Reservation[] = [reservation1];
 
-// array
-let reservations: Reservation[] = [reservation1];
+const checkIn2 = new Date("2025-02-01");
+const checkOut2 = new Date("2025-02-05");
+const pricePerDay2 = 150;
 
-// add another
 const reservation2: Reservation = {
-  customerName: "Bob",
-  checkIn: new Date("2026-04-21"),
-  checkOut: new Date("2026-04-23"),
-  pricePerDay: 150,
+  customerInformation: "Jane Smith",
+  checkIn: checkIn2,
+  checkOut: checkOut2,
+  pricePerDay: pricePerDay2,
   paymentInformation: {
     isPayed: false,
-    totalPrice: 0,
+    totalPrice: getDays(checkIn2, checkOut2) * pricePerDay2,
   },
 };
-
-const days2 = calculateDays(reservation2.checkIn, reservation2.checkOut);
-reservation2.paymentInformation.totalPrice = days2 * reservation2.pricePerDay;
 
 reservations.push(reservation2);
 
-// print
-reservations.forEach((res) => {
-  console.log(res.customerName, res.paymentInformation.totalPrice);
-});
+for (const reservation of reservations) {
+  console.log("Customer:", reservation.customerInformation);
+  console.log("Total Price:", reservation.paymentInformation.totalPrice);
+}

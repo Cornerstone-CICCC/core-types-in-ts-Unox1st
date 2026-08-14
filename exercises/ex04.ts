@@ -1,13 +1,14 @@
-let coordinate: [number, number] = [10, 20];
+const coordinate: [number, number] = [10, 20];
 
-interface Location {
+interface RaceLocation {
   description: string;
   coordinate: [number, number];
 }
 
-const location: Location = {
-  description: "My place",
+const raceLocation: RaceLocation = {
+  description: "City Center",
   coordinate: coordinate,
 };
 
-console.log(location);
+console.log(raceLocation);
+console.log("x:", raceLocation.coordinate[0], "y:", raceLocation.coordinate[1]);

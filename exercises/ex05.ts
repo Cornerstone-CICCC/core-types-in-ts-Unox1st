@@ -8,12 +8,11 @@ enum Day {
   Saturday,
 }
 
-let today: Day = Day.Monday;
-
-console.log(today);
+const currentDay: Day = Day.Monday;
+console.log("Current day:", Day[currentDay]);
 
 interface Race {
-  participants: string[];
+  participants: number;
   first: string;
   second: string;
   third: string;
@@ -21,11 +20,11 @@ interface Race {
 }
 
 const race: Race = {
-  participants: ["A", "B", "C"],
-  first: "A",
-  second: "B",
-  third: "C",
-  day: Day.Sunday,
+  participants: 10,
+  first: "Alice",
+  second: "Bob",
+  third: "Charlie",
+  day: Day.Saturday,
 };
 
 console.log(race);
